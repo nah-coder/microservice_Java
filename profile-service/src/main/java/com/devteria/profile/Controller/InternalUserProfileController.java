@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class UserProfileController {
+public class InternalUserProfileController {
     @Autowired
     private UserProfileService userProfileService;
-
-    @GetMapping("/users/{profileId}")
-    public UserProfileResponse getProfile(@PathVariable String profileId){
-        return userProfileService.getProfile(profileId);
+    @PostMapping("/internal/users/")
+    public UserProfileResponse createProfile(@RequestBody ProfileCreationRequest profileCreationRequest){
+        return userProfileService.createProfile(profileCreationRequest);
     }
 }
